@@ -25,8 +25,15 @@ function App() {
         <Route path="/" element={<Blank />} />
         {moviesData.results.map((movie) => {
           let url = `/${movie.episode_id}`;
-          return <Route path={url} element={<Main />} />;
+          return (
+            <Route
+              key={movie.episode_id}
+              path={url}
+              element={<Main movieDetails={movie} />}
+            />
+          );
         })}
+        <Route path="*" element={<Blank />} />
       </Routes>
     </BrowserRouter>
   );
